@@ -7,7 +7,7 @@ export default function deleteClient(req, res) {
   Client.deleteOne({_id: clientId})
     .exec()
     .then(result => {
-      res.status(202).json( 'Client was deleted' );
+      res.status(202).json( 'Client was deleted successfully' );
     })
     .catch(err => {
       res.status(402).send('Client was not deleted')
