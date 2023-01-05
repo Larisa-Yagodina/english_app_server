@@ -10,7 +10,7 @@ mongoose.set('strictQuery', false);
 async function dbConnect() {
   // cloud db
   //await mongoose.connect('mongodb+srv://admin:12345@cluster0.eq08xyg.mongodb.net/kanban');
-  await mongoose.connect('mongodb+srv://admin:backloop@cluster0.wdloccs.mongodb.net/test');
+  await mongoose.connect('mongodb+srv://admin:backloop@cluster1.xyeasnb.mongodb.net/test');
 
   // local db
   //await mongoose.connect('mongodb://localhost:27017/kanban');
