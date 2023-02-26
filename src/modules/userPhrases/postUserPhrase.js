@@ -8,6 +8,7 @@ export default function postUserPhrase(req, res) {
     note:   req.body.note,
     isStudied: req.body.isStudied,
     userId: req.body.userId,
+    wordId: req.body.userId,
   })
 
   newUserPhrase

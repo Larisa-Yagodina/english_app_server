@@ -2,9 +2,12 @@
   "name": "english-app-server",
   "version": "1.0.0",
   "description": "",
-  "main": "src/index.js",
+  "main": "index.js",
+  "engines": {
+    "node": "14.x"
+  },
   "scripts": {
-    "start": "nodemon --inspect --exec babel-node src/index.js",
+    "start": "nodemon --inspect --exec babel-node index.js",
     "test": "echo \"Error: no test specified\" && exit 1",
     "babel-node": "babel-node --presets='@babel/preset-env' --ignore='foo|bar|baz'",
     "generate:ci": "pnpm run -w build:ui && nuxt generate",
@@ -18,7 +21,9 @@
   "license": "ISC",
   "dependencies": {
     "body-parser": "^1.20.1",
+    "dotenv": "^16.0.3",
     "express": "^4.18.2",
+    "jsonwebtoken": "^9.0.0",
     "mongoose": "^6.8.0",
     "morgan": "^1.10.0",
     "nodemon": "^2.0.20"
