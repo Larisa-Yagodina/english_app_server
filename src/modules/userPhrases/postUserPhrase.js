@@ -8,13 +8,12 @@ export default function postUserPhrase(req, res) {
     note:   req.body.note,
     isStudied: req.body.isStudied,
     userId: req.body.userId,
-    wordId: req.body.userId,
   })
 
   newUserPhrase
     .save()
     .then(responce => {
-      res.status(203).json(`User's phrase ${req.body.name} is created`);
+      res.status(203).json(`User's phrase ${req.body.english} is created`);
     })
     .catch(err => {
       res.status(403).json(`User's phrase was not created`);
