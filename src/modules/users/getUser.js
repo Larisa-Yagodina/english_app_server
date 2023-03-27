@@ -1,7 +1,7 @@
-import Order from './Model'
+import User from './Model'
 
-export default function getOrder(req, res) {
-  Order
+export default function getUser(req, res) {
+  User
     .find()
     .exec()
     .then(result => {

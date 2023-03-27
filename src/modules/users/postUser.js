@@ -1,6 +1,6 @@
 import Order from './Model'
 
-export default function postOrder(req, res) {
+export default function postUser(req, res) {
 
   const newOrder = new Order({
     orderNumber: req.body.orderNumber,

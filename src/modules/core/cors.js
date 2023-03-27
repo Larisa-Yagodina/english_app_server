@@ -2,10 +2,12 @@ export default function cors (app){
   app.use((req, res, next) => {
     res.header('Access-Control-Allow-Origin', '*');
     res.header({
-      //'Access-Control-Allow-Origin': '*',
-      'Access-Control-Allow-Headers': 'Origin, X-Requested-With, Content-Type, Accept, Z-Key',
+      'Access-Control-Allow-Credentials': true,
+      // 'origin': process.env.CLIENT_URL,
+      'Access-Control-Allow-Origin': process.env.CLIENT_URL,
+      'Access-Control-Allow-Headers': 'Origin, X-Requested-With, Content-Type, Authorization, Accept, Z-Key',
       'Content-Type': 'application/json',
-      'Access-Control-Allow-Methods': 'GET, POST, PUT, DELETE, PATCH'
+      'Access-Control-Allow-Methods': 'GET, POST, PUT, DELETE, PATCH',
     });
     res.header(
       'Access-Control-Allow-Headers',

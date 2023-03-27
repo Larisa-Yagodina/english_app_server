@@ -1,9 +1,9 @@
 import Order from './Model'
-export default function updateOrder(req, res) {
+export default function updateUser(req, res) {
 
-  const orderId = req.params.orderId;
+  const userId = req.params.userId;
 
-  Order.findByIdAndUpdate(orderId, req.body)
+  Order.findByIdAndUpdate(userId, req.body)
     .exec()
     .then(result => {
       res.status(202).json('Order was updated')
