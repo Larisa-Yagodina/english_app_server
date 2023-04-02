@@ -7,7 +7,7 @@ export default function cors (app){
       'Access-Control-Allow-Origin': process.env.CLIENT_URL,
       'Access-Control-Allow-Headers': 'Origin, X-Requested-With, Content-Type, Authorization, Accept, Z-Key',
       'Content-Type': 'application/json',
-      'Access-Control-Allow-Methods': 'GET, POST, PUT, DELETE, PATCH',
+      'Access-Control-Allow-Methods': 'GET, POST, PUT, DELETE, PATCH, OPTIONS',
     });
     res.header(
       'Access-Control-Allow-Headers',
