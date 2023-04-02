@@ -13,7 +13,6 @@ export default function routes(app){
   app.use('/statuses', statusesRouter)
   app.use('/services', servicesRouter)
   app.use('/userPhrases', UserPhrasesRouter)
-  app.get('/favicon.ico', (req, res) => res.status(204));
   app.use('/', home)
 }
 

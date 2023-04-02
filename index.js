@@ -8,11 +8,12 @@ import dbConnect from './src/modules/core/db';
 require('dotenv').config();
 import cookieParser from 'cookie-parser';
 import errorMiddleware from './src/modules/users/exceptions/api-errors';
+import ignoreFavicon from './src/modules/core/ignoreFavico';
 
 const app = express();
 const PORT = process.env.PORT || 5000;
 
-
+app.use(ignoreFavicon);
 dbConnect()
 logger(app)
 parseResponse(app)
