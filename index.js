@@ -13,6 +13,7 @@ import home from './src/modules/home';
 const app = express();
 const PORT = process.env.PORT || 5000;
 
+console.log('Hello');
 app.get('/favicon.ico', (req, res) => res.status(204));
 app.use('/', home)
 

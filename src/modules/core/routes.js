@@ -6,6 +6,7 @@ import UserPhrasesRouter from '../userPhrases/UserPhrasesRouter';
 import userRouter from '../users/userRouter';
 
 // english-app-server-7edr2daej-larisa-yagodina.vercel.app
+console.log('---routes---');
 
 export default function routes(app){
   app.use('/user', userRouter)
