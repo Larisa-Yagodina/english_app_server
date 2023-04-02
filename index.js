@@ -8,14 +8,10 @@ import dbConnect from './src/modules/core/db';
 require('dotenv').config();
 import cookieParser from 'cookie-parser';
 import errorMiddleware from './src/modules/users/exceptions/api-errors';
-import home from './src/modules/home';
 
 const app = express();
 const PORT = process.env.PORT || 5000;
 
-console.log('Hello');
-app.get('/favicon.ico', (req, res) => res.status(204));
-app.use('/', home)
 
 dbConnect()
 logger(app)
