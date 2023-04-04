@@ -2,7 +2,8 @@ import express from 'express';
 import errorHandler from './src/modules/errorHandler';
 import logger from './src/modules/core/logger';
 import parseResponse from './src/modules/core/parseResponse';
-import cors from './src/modules/core/cors';
+//import cors from './src/modules/core/cors';
+import cors from 'cors';
 import routes from './src/modules/core/routes';
 import dbConnect from './src/modules/core/db';
 require('dotenv').config();
@@ -13,12 +14,21 @@ import ignoreFavicon from './src/modules/core/ignoreFavico';
 const app = express();
 const PORT = process.env.PORT || 5000;
 
+const corsOptions = {
+  "origin": ['http://localhost:3000', 'https://level-up-skill.netlify.app'],
+  "methods": "GET,PUT,PATCH,POST,DELETE,OPTIONS",
+  "optionsSuccessStatus": 204,
+  "allowedHeaders": ['Content-Type', 'Authorization'],
+  "credentials": true
+}
+
 app.use(ignoreFavicon);
 dbConnect()
 logger(app)
 parseResponse(app)
 app.use(cookieParser());
-cors(app)
+app.use(cors(corsOptions))
+//cors(app)
 routes(app)
 app.use(errorMiddleware)
 errorHandler(app)
