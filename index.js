@@ -18,8 +18,8 @@ const corsOptions = {
   "origin": ['http://localhost:3000', 'https://level-up-skill.netlify.app'],
   "methods": "GET,PUT,PATCH,POST,DELETE,OPTIONS",
   "optionsSuccessStatus": 204,
-  "allowedHeaders": ['Content-Type', 'Authorization'],
-  "credentials": true
+  "allowedHeaders": ['Content-Type', 'Accept', 'Authorization', 'crossDomain', 'X-Requested-With' ],
+  "credentials": true,
 }
 
 app.use(ignoreFavicon);
