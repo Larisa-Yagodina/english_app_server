@@ -15,6 +15,7 @@ module.exports = class ApiError extends Error {
 
   static BadRequest(message, errors = []) {
     console.log(message);
+    console.log(errors);
     return new ApiError(410, message, errors)
   }
 }
