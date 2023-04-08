@@ -1,6 +1,10 @@
 import UserService from '../services/UserService';
 import {validationResult} from 'express-validator';
 import ApiError from '../exceptions/api-errors';
+import UserModel from '../Model';
+import bcrypt from 'bcrypt';
+import UserDto from '../dtos/userDto';
+import tokenService from '../services/TokenService';
 
 class UserController {
   async registration(req, res, next) {
@@ -22,9 +26,27 @@ class UserController {
   async login(req, res, next) {
     try {
       const {email, password} = req.body;
-      const userData = await UserService.login(email, password);
+      // const userData = await UserService.login(email, password);
+
+      const user = await UserModel.findOne({email})
+      if (!user) {
+        //throw ApiError.BadRequest('Пользователь с таким email не найден')
+        res.status(403).send('Пользователь с таким email не найден')
+      }
+      const isPassEquals = await bcrypt.compare(password, user.password);
+      if (!isPassEquals) {
+        // throw ApiError.BadRequest('Неверный пароль');
+        res.status(403).send('Неверный пароль')
+
+      }
+      const userDto = new UserDto(user);
+      const tokens = tokenService.generateTokens({...userDto});
+      await tokenService.saveToken(userDto.id, tokens.refreshToken);
+      const userData = {...tokens, user: userDto}
+
       res.cookie('refreshToken', userData.refreshToken, {maxAge: 3 * 24 * 60 * 60 * 1000, httpOnly: true, secure: true, sameSite: 'none'});
       return res.json(userData);
+
     } catch (e) {
       next(e);
     }
