@@ -1,12 +1,13 @@
 module.exports = class ApiError extends Error {
   status;
   errors;
+  clientMessage;
 
   constructor(status, message, errors = []) {
     super(message);
     this.status = status;
     this.errors = errors;
-    this.message = message;
+    this.clientMessage = message;
   }
 
   static UnauthorizedError() {
@@ -14,8 +15,6 @@ module.exports = class ApiError extends Error {
   }
 
   static BadRequest(message, errors = []) {
-    console.log(message);
-    console.log(errors);
     return new ApiError(410, message, errors)
   }
 }
