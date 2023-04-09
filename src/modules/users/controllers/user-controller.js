@@ -1,6 +1,6 @@
 import UserService from '../services/UserService';
 import {validationResult} from 'express-validator';
-import ApiError from '../exceptions/api-errors';
+//import ApiError from '../exceptions/api-errors';
 import UserModel from '../Model';
 import bcrypt from 'bcrypt';
 import UserDto from '../dtos/userDto';
@@ -34,13 +34,15 @@ class UserController {
 
       const userData = {...tokens, user: userDto};
 
-      res.cookie('refreshToken', userData.refreshToken, {maxAge: 3 * 24 * 60 * 60 * 1000, httpOnly: true, secure: true, sameSite: 'none'});
+      //res.cookie('refreshToken', userData.refreshToken, {maxAge: 3 * 24 * 60 * 60 * 1000, httpOnly: true, secure: true, sameSite: 'none'});
+      res.cookie('refreshToken', userData.refreshToken, {maxAge: 3 * 24 * 60 * 60 * 1000, secure: true, sameSite: 'none'});
 
       return res.json(userData);
     } catch (e) {
       next(e);
     }
   }
+
 
   async login(req, res, next) {
     try {
@@ -63,7 +65,8 @@ class UserController {
       await tokenService.saveToken(userDto.id, tokens.refreshToken);
       const userData = {...tokens, user: userDto}
 
-      res.cookie('refreshToken', userData.refreshToken, {maxAge: 3 * 24 * 60 * 60 * 1000, httpOnly: true, secure: true, sameSite: 'none'});
+      // res.cookie('refreshToken', userData.refreshToken, {maxAge: 3 * 24 * 60 * 60 * 1000, httpOnly: true, secure: true, sameSite: 'none'});
+      res.cookie('refreshToken', userData.refreshToken, {maxAge: 3 * 24 * 60 * 60 * 1000, secure: true, sameSite: 'none'});
       return res.json(userData);
 
     } catch (e) {
@@ -98,7 +101,9 @@ class UserController {
       console.log(req.cookies);
       const {refreshToken} = req.cookies;
       const userData = await UserService.refresh(refreshToken);
-      res.cookie('refreshToken', userData.refreshToken, {maxAge: 3 * 24 * 60 * 60 * 1000, httpOnly: true, secure: true, sameSite: 'none'});
+      //res.cookie('refreshToken', userData.refreshToken, {maxAge: 3 * 24 * 60 * 60 * 1000, httpOnly: true, secure: true, sameSite: 'none'});
+      res.cookie('refreshToken', userData.refreshToken, {maxAge: 3 * 24 * 60 * 60 * 1000, secure: true, sameSite: 'none'});
+
       return res.json(userData);
     } catch (e) {
       next(e);
