@@ -15,7 +15,7 @@ const app = express();
 const PORT = process.env.PORT || 5000;
 
 const corsOptions = {
-  origin: [process.env.CLIENT_URL, process.env.CLIENT_URL_APP],
+  origin: ['https://english-up.netlify.app', 'http://localhost:3000'],
   //methods: "GET,PUT,PATCH,POST,DELETE,OPTIONS",
   //optionsSuccessStatus: 204,
   //allowedHeaders: ['Content-Type', 'Accept', 'Authorization', 'crossDomain', 'X-Requested-With' ],
