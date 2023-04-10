@@ -4,7 +4,7 @@ export default function cors (app){
     res.header({
       'Access-Control-Allow-Credentials': true,
       // 'origin': process.env.CLIENT_URL,
-      'Access-Control-Allow-Origin': process.env.CLIENT_URL || 'https://level-up-skill.netlify.app/',
+      'Access-Control-Allow-Origin': process.env.CLIENT_URL || 'https://english-up.netlify.app/',
       'Access-Control-Allow-Headers': 'Origin, X-Requested-With, Content-Type, Authorization, Accept, Z-Key',
       'Content-Type': 'application/json',
       'Access-Control-Allow-Methods': 'GET, POST, PUT, DELETE, PATCH, OPTIONS',
