@@ -8,6 +8,8 @@ import * as uuid from 'uuid';
 import mailService from '../services/MailService';
 
 class UserController {
+
+
   async registration(req, res, next) {
     try {
       const errors = validationResult(req);
@@ -92,6 +94,19 @@ class UserController {
     }
   }
 
+
+  async resetPasswordOpenForm(req, res, next) {
+    console.log(req)
+    try {
+      const activationLink = req.params.link;
+      //await UserService.resetPassword(activationLink);
+      return res.redirect(process.env.CLIENT_URL + '/password/');
+    } catch (e) {
+      next(e);
+    }
+  }
+
+
   async refresh(req, res, next) {
     try {
       console.log(' --- cookies --- ');
@@ -109,6 +124,26 @@ class UserController {
     try {
       const users = await UserService.getAllUsers();
       return res.json(users);
+    } catch (e) {
+      next(e);
+    }
+  }
+
+
+  async forgotPassword(req, res, next) {
+    console.log(' --- forgot password---');
+    try {
+      const {email} = req.body;
+      console.log(email);
+      const candidate = await UserModel.findOne({email});
+      console.log(candidate);
+      if (!candidate) {
+        //throw ApiError.BadRequest(`Пользователь с адресом ${email} уже существует`);
+        res.status(402).send(`Пользователя с адресом ${email} не существует, вам необходимо зарегистрироваться`)
+      }
+      const resetPasswordLink = uuid.v4();
+      await mailService.sendResetPasswordMail(email, `${process.env.API_URL}/user/reset_password/${resetPasswordLink}`);
+      return res.status(203).send(`На ваш емэйл ${email} отправлена ссылка для смены пароля`);
     } catch (e) {
       next(e);
     }

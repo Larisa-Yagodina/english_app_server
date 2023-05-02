@@ -23,6 +23,10 @@ userRouter.delete('/tokens', deleteTokens);
 userRouter.get('/activation/:link', UserController.activate);
 userRouter.get('/refresh', UserController.refresh);
 
+userRouter.post('/reset_password', UserController.forgotPassword);
+userRouter.get('/reset_password/:link', UserController.resetPasswordOpenForm);
+
+
 userRouter.get('/users',
   authMiddleware,
   UserController.getUsers);

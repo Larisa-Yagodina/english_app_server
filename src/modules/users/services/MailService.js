@@ -34,6 +34,24 @@ class MailService {
     );
   }
 
+  async sendResetPasswordMail(to, link) {
+    await this.transporter.sendMail({
+        from: "cheeseroll@mail.ru",
+        to,
+        subject: "Восстановление пароля в приложении English UP",
+        text: "",
+        html:
+          `
+      <div>
+         <h1>Для восстановления пароля перейдите по ссылке:</h1>
+         <a href="${link}">${link}</a>
+       </div>
+      `
+      }
+    );
+  }
+
+
 }
 
 module.exports = new MailService();
