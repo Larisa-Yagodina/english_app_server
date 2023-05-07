@@ -96,7 +96,7 @@ class UserController {
 
 
   async resetPasswordOpenForm(req, res, next) {
-    console.log(req)
+
     try {
       const activationLink = req.params.link;
       //await UserService.resetPassword(activationLink);
