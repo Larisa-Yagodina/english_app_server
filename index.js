@@ -27,6 +27,7 @@ logger(app)
 parseResponse(app)
 app.use(cookieParser());
 app.use(cors(corsOptions))
+app.set("view engine", "ejs");
 ignoreFavicon(app);
 //cors(app)
 routes(app)

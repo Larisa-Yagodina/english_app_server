@@ -5,7 +5,7 @@ const {Schema} = mongoose;
 const userSchema = new Schema({
   email: {type: String, required: true, unique: true},
   password: {type: String, required: true},
-  isActivated: {type: String, required: false},
+  isActivated: {type: Boolean, required: false},
   activationLink: {type: String}
 });
 

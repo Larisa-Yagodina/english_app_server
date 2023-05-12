@@ -19,35 +19,34 @@ class MailService {
 
   async sendActivationMail(to, link) {
     await this.transporter.sendMail({
-      from: "cheeseroll@mail.ru",
+      from: 'cheeseroll@mail.ru',
       to,
-      subject: "Активация аккаунта в приложении English UP",
-      text: "",
+      subject: 'Активация аккаунта в приложении English UP',
+      text: '',
       html:
-      `
+          `
       <div>
          <h1>Для активации перейдите по ссылке:</h1>
          <a href="${link}">${link}</a>
        </div>
       `
-      }
+    }
     );
   }
 
   async sendResetPasswordMail(to, link) {
     await this.transporter.sendMail({
-        from: "cheeseroll@mail.ru",
-        to,
-        subject: "Восстановление пароля в приложении English UP",
-        text: "",
-        html:
+      from: 'cheeseroll@mail.ru',
+      to,
+      subject: 'Восстановление пароля в приложении English UP',
+      text: '',
+      html:
           `
       <div>
-         <h1>Для восстановления пароля перейдите по ссылке:</h1>
-         <a href="${link}">${link}</a>
+         <h1>Для восстановления пароля перейдите по <a href="${link}">ссылке</a></h1>
        </div>
       `
-      }
+    }
     );
   }
 

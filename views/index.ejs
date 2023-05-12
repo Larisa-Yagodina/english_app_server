@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Изменение пароля</title>
+    <style type="text/css">
+        button.new {
+            color: #00788C; /* цвет текста */
+            text-decoration: none; /* убирать подчёркивание у ссылок */
+            user-select: none; /* убирать выделение текста */
+
+            padding: .7em 1.5em; /* отступ от текста */
+            outline: none; /* убирать контур в Mozilla */
+        }
+        body {
+            margin: 10% 10%;
+        }
+        div {
+            margin: 3% 0;
+        }
+        input {
+
+        }
+    </style>
+    <script>
+      const status = '<%- JSON.stringify(status) %>';
+
+      if (JSON.parse(status) == "verified") {
+        if (confirm("Do you want to login?")) {
+          window.location.href = process.env.CLIENT_URL + "/login";
+        }
+      }
+    </script>
+</head>
+<body>
+<h1>Изменение пароля</h1>
+<h2>для пользователя <%= email%></h2>
+<form action="" method="post">
+    <div>
+    <input
+            type="password"
+            name="password"
+            id="password"
+            placeholder="password"
+    />
+    </div>
+
+    <div>
+    <input
+            type="password"
+            name="confirm-password"
+            id="confirm-password"
+            placeholder="confirm-password"
+    />
+    </div>
+    <div>
+        <button type="submit" value="submit" class="new">SUBMIT</button>
+    </div>
+</form>
+</body>
+</html>

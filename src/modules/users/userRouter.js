@@ -23,8 +23,11 @@ userRouter.delete('/tokens', deleteTokens);
 userRouter.get('/activation/:link', UserController.activate);
 userRouter.get('/refresh', UserController.refresh);
 
-userRouter.post('/reset_password', UserController.forgotPassword);
-userRouter.get('/reset_password/:link', UserController.resetPasswordOpenForm);
+userRouter.post('/reset_password', UserController.resetPassword);
+
+userRouter.post('/forgot_password', UserController.forgotPassword);
+//userRouter.get('/reset-password/:id/:token', UserController.checkResetPasswordLink);
+userRouter.post('/reset-password/:id', UserController.resetPasswordThroughLink);
 
 
 userRouter.get('/users',
