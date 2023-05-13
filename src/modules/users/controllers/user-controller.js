@@ -29,7 +29,7 @@ class UserController {
       const hashPassword = await bcrypt.hash(password, 3);
       const activationLink = uuid.v4();
       const user = await UserModel.create({email, password: hashPassword, activationLink, isActivated: false});
-      await mailService.sendActivationMail(email, `${process.env.API_URL}user/activation/${activationLink}`);
+      await mailService.sendActivationMail(email, `${process.env.API_URL}/user/activation/${activationLink}`);
       const userDto = new UserDto(user);
       const tokens = tokenService.generateTokens({...userDto});
       await tokenService.saveToken(userDto.id, tokens.refreshToken);
@@ -170,7 +170,7 @@ class UserController {
       const token = jwt.sign({email: user.email, id: user._id}, secret, {
         expiresIn: '3h',
       });
-      const link = `${process.env.CLIENT_URL}user/password-reset/${user._id}`;
+      const link = `${process.env.CLIENT_URL}/user/password-reset/${user._id}`;
       await mailService.sendResetPasswordMail(email, link);
 
       const userData = {token, id: user._id};
