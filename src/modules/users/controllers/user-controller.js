@@ -208,6 +208,25 @@ class UserController {
   }
 
 
+  async sendActivateMail(req, res, next) {
+    try {
+      const {email} = req.body;
+
+      const user = await UserModel.findOne({email});
+      if (!user) {
+        //throw ApiError.BadRequest(`Пользователь с адресом ${email} уже существует`);
+        res.status(402).send('Пользователя не существует');
+      }
+
+      const activationLink = user.activationLink;
+      await mailService.sendActivationMail(email, `${process.env.API_URL}/user/activation/${activationLink}`);
+
+      return res.status(202).send('На вашу почту отправлено письмо со ссылкой для активации аккаунта');
+    } catch (e) {
+      next(e);
+    }
+  }
+
 }
 
 

@@ -14,9 +14,6 @@ class MailService {
     });
   }
 
-  // mail pass
-  // 5RhGDs4jmhwWuinDJFrn
-
   async sendActivationMail(to, link) {
     await this.transporter.sendMail({
       from: 'cheeseroll@mail.ru',

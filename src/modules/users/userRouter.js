@@ -21,6 +21,8 @@ userRouter.delete('/tokens', deleteTokens);
 
 
 userRouter.get('/activation/:link', UserController.activate);
+userRouter.post('/activation_send_mail', UserController.sendActivateMail);
+
 userRouter.get('/refresh', UserController.refresh);
 
 userRouter.post('/reset_password', UserController.resetPassword);
