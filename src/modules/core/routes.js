@@ -8,11 +8,11 @@ import userRouter from '../users/userRouter';
 // english-app-server-7edr2daej-larisa-yagodina.vercel.app
 
 export default function routes(app){
-  app.use('/user', userRouter)
-  app.use('/userWords', tasksRouter)
-  app.use('/statuses', statusesRouter)
-  app.use('/services', servicesRouter)
-  app.use('/userPhrases', UserPhrasesRouter)
-  app.use('/', home)
+  app.use('/user', userRouter);
+  app.use('/userWords', tasksRouter);
+  app.use('/statuses', statusesRouter);
+  app.use('/services', servicesRouter);
+  app.use('/userPhrases', UserPhrasesRouter);
+  app.use('/', home);
 }
 

@@ -15,15 +15,12 @@ class UserController {
     try {
       const errors = validationResult(req);
       if (!errors.isEmpty()) {
-        //return next(ApiError.BadRequest('Ошибка при валидации', errors.array()));
         res.status(402).send('Пожалуйста, введите корректные данные');
       }
       const {email, password} = req.body;
-      //const userData = await UserService.registration(email, password);
 
       const candidate = await UserModel.findOne({email});
       if (candidate) {
-        //throw ApiError.BadRequest(`Пользователь с адресом ${email} уже существует`);
         res.status(402).send(`Пользователь с адресом ${email} уже существует`);
       }
       const hashPassword = await bcrypt.hash(password, 3);
@@ -99,7 +96,7 @@ class UserController {
     try {
       const activationLink = req.params.link;
       await UserService.activate(activationLink);
-      return res.redirect(process.env.CLIENT_URL + 'user/activation');
+      return res.redirect(process.env.CLIENT_URL + 'activation');
     } catch (e) {
       next(e);
     }
@@ -170,7 +167,7 @@ class UserController {
       const token = jwt.sign({email: user.email, id: user._id}, secret, {
         expiresIn: '3h',
       });
-      const link = `${process.env.CLIENT_URL}user/password-reset/${user._id}`;
+      const link = `${process.env.CLIENT_URL}password-reset/${user._id}`;
       await mailService.sendResetPasswordMail(email, link);
 
       const userData = {token, id: user._id};
@@ -214,7 +211,6 @@ class UserController {
 
       const user = await UserModel.findOne({email});
       if (!user) {
-        //throw ApiError.BadRequest(`Пользователь с адресом ${email} уже существует`);
         res.status(402).send('Пользователя не существует');
       }
 
